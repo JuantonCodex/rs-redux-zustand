@@ -13,7 +13,7 @@ import { useSelector, TypedUseSelectorHook } from "react-redux";
 const todoSlice = createSlice({
   name: "todo",
   initialState: {
-    list: ["study", "judo", "gym"],
+    list: ["study", "judo", "gym"]
   },
   // En reducers, se declaran las aciones se pueden ejecutar
   reducers: {
