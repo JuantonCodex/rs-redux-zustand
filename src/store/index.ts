@@ -1,36 +1,15 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { useSelector, TypedUseSelectorHook } from "react-redux";
+import { player } from "./slices/player";
 
-// Ejemplo de cómo definir la interfaz de mi estado global manualmente
-/* export interface GlobalState {
-  todo: {
-    list: string[];
-  };
-}
+/**
+ * Cada reducer es responsable de devolver su propio estado del slice
  */
-
-// Creamos un pedazo de estado (slice)
-const todoSlice = createSlice({
-  name: "todo",
-  initialState: {
-    list: ["study", "judo", "gym"]
-  },
-  // En reducers, se declaran las aciones se pueden ejecutar
-  reducers: {
-    add: (state, action) => {
-      state.list.push(action.payload);
-      console.log(action);
-    },
-  },
-});
-
 export const store = configureStore({
   reducer: {
-    todo: todoSlice.reducer,
+    player,
   },
 });
-
-export const { add } = todoSlice.actions;
 
 /**
  * 1. typeof store.getState: typeof se utiliza para obtener el tipo de la expresión
@@ -39,4 +18,9 @@ export const { add } = todoSlice.actions;
  * en este caso de store.getState.
  */
 export type GlobalState = ReturnType<typeof store.getState>;
+
+/**
+ * useSelector es un hook de  React Redux para leer los datos del estado global
+ * gestionado por Redux
+ */
 export const useAppSelector: TypedUseSelectorHook<GlobalState> = useSelector;
