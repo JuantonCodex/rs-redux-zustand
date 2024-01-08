@@ -14,8 +14,14 @@ interface IModuleProps {
 export function Module({ moduleIndex, title, lessonsCount }: IModuleProps) {
   const dispatch = useDispatch();
 
-  const lessons = useAppSelector((state) => {
-    return state.player.course.modules[moduleIndex].lessons;
+  const data = useAppSelector((state) => {
+    const lessons = state.player.course.modules[moduleIndex].lessons;
+    const { currentModuleIndex, currentLessonIndex } = state.player;
+    return {
+      lessons,
+      currentModuleIndex,
+      currentLessonIndex,
+    };
   });
 
   const handleOnPlay = (moduleIndex: number, lessonIndex: number) => {
@@ -47,14 +53,21 @@ export function Module({ moduleIndex, title, lessonsCount }: IModuleProps) {
 
         <Collapsible.Content>
           <nav className="relative flex flex-col gap-4 p-6">
-            {lessons.map((lesson, lessonIndex) => (
-              <Lesson
-                key={lesson.id}
-                title={lesson.title}
-                duration={lesson.duration}
-                onPlay={() => handleOnPlay(moduleIndex, lessonIndex)}
-              />
-            ))}
+            {data.lessons.map((lesson, lessonIndex) => {
+              const isCurrent =
+                data.currentModuleIndex === moduleIndex &&
+                data.currentLessonIndex === lessonIndex;
+
+              return (
+                <Lesson
+                  key={lesson.id}
+                  title={lesson.title}
+                  duration={lesson.duration}
+                  onPlay={() => handleOnPlay(moduleIndex, lessonIndex)}
+                  isCurrent={isCurrent}
+                />
+              );
+            })}
           </nav>
         </Collapsible.Content>
       </Collapsible.Root>
