@@ -3,7 +3,6 @@ import { useAppSelector } from "../store";
 export function Header() {
   const { moduleTitle, lessonTitle } = useAppSelector((state) => {
     const { currentModuleIndex, currentLessonIndex } = state.player;
-
     const currentModule = state.player.course.modules[currentModuleIndex];
     const currentLesson = currentModule.lessons[currentLessonIndex];
 

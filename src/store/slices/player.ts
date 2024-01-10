@@ -55,11 +55,6 @@ const playerSlice = createSlice({
               title: "Interações no JSX",
               duration: "06:33",
             },
-            {
-              id: "1GOvSTqWELg",
-              title: "Utilizando estado",
-              duration: "09:12",
-            },
           ],
         },
       ],
@@ -72,6 +67,18 @@ const playerSlice = createSlice({
       state.currentModuleIndex = action.payload.moduleIndex;
       state.currentLessonIndex = action.payload.lessonIndex;
     },
+    next: (state) => {
+      const nextLessonIndex = state.currentLessonIndex + 1;
+      const nextLesson =
+        state.course.modules[state.currentModuleIndex].lessons[nextLessonIndex];
+
+      if (nextLesson) {
+        state.currentLessonIndex = nextLessonIndex;
+      } else if (state.course.modules[state.currentModuleIndex + 1]) {
+        state.currentModuleIndex += 1;
+        state.currentLessonIndex = 0;
+      }
+    },
   },
 });
 
@@ -81,4 +88,4 @@ const playerSlice = createSlice({
  */
 export const player = playerSlice.reducer;
 
-export const { play } = playerSlice.actions;
+export const { play, next } = playerSlice.actions;
