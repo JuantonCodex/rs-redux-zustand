@@ -6,7 +6,7 @@ This project is an application that uses React and Redux to manage a video playe
 ## Installation
 
 ```
-npm intall
+npm install
 ```
 
 ## Development

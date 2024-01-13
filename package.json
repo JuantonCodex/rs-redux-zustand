@@ -1,9 +1,9 @@
 {
-  "name": "rs-redux-zustand",
+  "name": "video-player-redux",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://juanantonsp.github.io/rs-redux-zustand/",
+  "homepage": "https://juanantonsp.github.io/video-player-redux/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
