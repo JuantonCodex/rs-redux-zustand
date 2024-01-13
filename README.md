@@ -1,4 +1,4 @@
-# Video Player App with Redux
+# Video Player with React and Redux
 
 This project is an application that uses React and Redux to manage a video player.
 
