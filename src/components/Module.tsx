@@ -11,7 +11,11 @@ interface IModuleProps {
   lessonsCount: number;
 }
 
-export function Module({ moduleIndex, title, lessonsCount }: IModuleProps) {
+export function Module({
+  moduleIndex,
+  title,
+  lessonsCount,
+}: Readonly<IModuleProps>) {
   const dispatch = useDispatch();
 
   const data = useAppSelector((state) => {
