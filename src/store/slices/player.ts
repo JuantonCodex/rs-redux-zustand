@@ -7,6 +7,7 @@ import { createSlice } from "@reduxjs/toolkit";
  * respuesta a las acciones.
  * Se puede agregar acciones y selectores
  */
+
 const playerSlice = createSlice({
   name: "player",
   initialState: {
@@ -81,6 +82,8 @@ const playerSlice = createSlice({
     },
   },
 });
+
+export const initialState = playerSlice.getInitialState();
 
 /**
  * playerSlice.reducer, función pura que retorna el estado actual de una parte

@@ -26,11 +26,11 @@ export function Player() {
             Deixar feedback
           </button>
         </div>
-        <main className="relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow pr-80">
+        <main className="flex flex-col relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow md:pr-80 md:flex-row">
           <div className="flex-1">
             <Video />
           </div>
-          <aside className="w-80 absolute top-0 bottom-0 right-0 border-l divide-y-2 divide-zinc-900 border-zinc-800 bg-zinc-900 overflow-y-scroll scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800">
+          <aside className="top-0 bottom-0 right-0 border-l divide-y-2 divide-zinc-900 border-zinc-800 bg-zinc-900 overflow-y-scroll scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 md:absolute md:w-80">
             {modules.map(({ id, title, lessons }, index) => (
               <Module
                 key={id}
