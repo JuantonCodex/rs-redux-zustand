@@ -2,6 +2,18 @@
 
 This project is an application that uses React and Redux to manage a video player.
 
+### Preview
+<table>
+  <tr>
+    <td align="center">Mobile</td>
+    <td align="center">Desktop</td>
+  </tr>
+  <tr>
+    <td><img src="./previews/mobile-version.png" width="300" /></td>
+    <td><img src="./previews/desktop-version.png" /></td>
+  </tr>
+</table>
+
 
 ## Installation
 
