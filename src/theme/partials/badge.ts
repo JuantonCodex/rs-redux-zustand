@@ -1,5 +1,5 @@
 export const bagdeVariants = {
-  text: {
+  standard: {
     primary: {
       textColor: "text-blue-500",
       border: "",
@@ -10,9 +10,13 @@ export const bagdeVariants = {
       border: "",
       backgroundColor: "bg-transparent",
     },
-    // ...
+    warning: {
+      textColor: "text-green-100",
+      border: "",
+      backgroundColor: "bg-transparent",
+    },
   },
-  outlined: {
+  dot: {
     primary: {
       textColor: "text-blue-500",
       border: "border border-blue-500",
@@ -23,20 +27,12 @@ export const bagdeVariants = {
       border: "border border-green-500",
       backgroundColor: "bg-transparent",
     },
-  },
-  contained: {
-    primary: {
-      textColor: "text-white",
+    warning: {
+      textColor: "text-green-100",
       border: "",
-      backgroundColor: "bg-blue-500",
-    },
-    secondary: {
-      textColor: "text-white",
-      border: "border border-green-500",
-      backgroundColor: "bg-green-500",
+      backgroundColor: "bg-transparent",
     },
   },
-  // ... más variantes de botones si son necesarias
 };
 
 export const badgeSpacing = {};
