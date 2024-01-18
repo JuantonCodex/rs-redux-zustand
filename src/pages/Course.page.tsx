@@ -1,17 +1,24 @@
-import { Header } from "../components/Header";
-import { Video } from "../components/Video";
-import { Module } from "../components/Module";
+import { Header } from "../shared/components/Header";
+import { VideoPlayer } from "../shared/components/VideoPlayer/VideoPlayer";
 import { MessageCircle } from "lucide-react";
 import { useAppSelector } from "../store";
-import { SEOHead } from "../components/SEOHead";
+import { SEOHead } from "../shared/components/SEOHead";
 import { useCurrentLesson } from "../hooks";
-import { Button } from "../components/Button/Button";
+import { Button } from "../shared/components/Button/Button";
+import { CourseModule } from "../modules/course/components/CourseModule";
+import { useDispatch } from "react-redux";
+import { next } from "../store/slices/player";
 
-export function Player() {
+export function Course() {
+  const dispatch = useDispatch();
   const { currentLesson } = useCurrentLesson();
   const modules = useAppSelector((state) => {
     return state.player.course.modules;
   });
+
+  const handleOnNextVideo = () => {
+    dispatch(next());
+  };
 
   return (
     <div className="h-screen bg-zinc-950 text-zinc-50 flex justify-center items-center p-4">
@@ -30,11 +37,14 @@ export function Player() {
         </div>
         <main className="flex flex-col relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow tablet:pr-80 tablet:flex-row">
           <div className="flex-1">
-            <Video />
+            <VideoPlayer
+              url={`https://www.youtube.com/watch?v=${currentLesson.id}`}
+              onNext={handleOnNextVideo}
+            />
           </div>
           <aside className="top-0 bottom-0 right-0 border-l divide-y-2 divide-zinc-900 border-zinc-800 bg-zinc-900 overflow-y-scroll scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 tablet:absolute tablet:w-80">
             {modules.map(({ id, title, lessons }, index) => (
-              <Module
+              <CourseModule
                 key={id}
                 moduleIndex={index}
                 title={title}

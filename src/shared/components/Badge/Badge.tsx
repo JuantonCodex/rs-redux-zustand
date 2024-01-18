@@ -1,4 +1,4 @@
-import { TBadgeVariant } from "../../theme/types";
+import { TBadgeVariant } from "../../../theme/types";
 import { getClassNames } from "./Badge.styles";
 
 interface IBadgeProps {

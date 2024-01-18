@@ -1,9 +1,9 @@
 import { ChevronDown } from "lucide-react";
-import { Lesson } from "./Lesson";
 import * as Collapsible from "@radix-ui/react-collapsible";
-import { useAppSelector } from "../store";
+import { useAppSelector } from "../../../store";
 import { useDispatch } from "react-redux";
-import { play } from "../store/slices/player";
+import { play } from "../../../store/slices/player";
+import { CourseLesson } from "./CourseLesson";
 
 interface IModuleProps {
   moduleIndex: number;
@@ -11,7 +11,7 @@ interface IModuleProps {
   lessonsCount: number;
 }
 
-export function Module({
+export function CourseModule({
   moduleIndex,
   title,
   lessonsCount,
@@ -63,7 +63,7 @@ export function Module({
                 data.currentLessonIndex === lessonIndex;
 
               return (
-                <Lesson
+                <CourseLesson
                   key={lesson.id}
                   title={lesson.title}
                   duration={lesson.duration}

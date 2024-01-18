@@ -1,4 +1,4 @@
-import { useCurrentLesson } from "../hooks";
+import { useCurrentLesson } from "../../hooks";
 
 export function Header() {
   const { currentLesson, currentModule } = useCurrentLesson();
