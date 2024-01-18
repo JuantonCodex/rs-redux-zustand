@@ -1,4 +1,4 @@
-import { TButtonColor, TButtonVariant } from "../../theme/types";
+import { TButtonColor, TButtonVariant } from "../../../theme/types";
 import { getClassNames } from "./Buttons.styles";
 
 interface IButtonProps {
