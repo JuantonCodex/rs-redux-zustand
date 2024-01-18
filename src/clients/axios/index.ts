@@ -1,5 +1,5 @@
 import axios from "axios";
-import { endpoint } from "../constants";
+import { endpoint } from "../../api/constants";
 
 interface IAxiosClient {
   method: "GET" | "POST";
