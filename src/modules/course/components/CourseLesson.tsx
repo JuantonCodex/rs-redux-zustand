@@ -7,12 +7,12 @@ interface ILessonProps {
   isCurrent?: boolean;
 }
 
-export function Lesson({
+export function CourseLesson({
   title,
   duration,
   onPlay,
   isCurrent = false,
-}: ILessonProps) {
+}: Readonly<ILessonProps>) {
   return (
     <button
       data-active={isCurrent}
