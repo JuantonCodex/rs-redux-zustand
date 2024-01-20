@@ -1,14 +1,12 @@
 import axios from "axios";
 import { endpoint } from "../../api/constants";
 
-interface IAxiosClient {
-  method: "GET" | "POST";
-}
-
-export const axiosClient = ({ method = "GET" }: IAxiosClient) => {
+export const axiosClient = () => {
   return axios.create({
     baseURL: endpoint,
-    method,
     timeout: 1000,
+    headers: {
+      Accept: "application/json",
+    },
   });
 };
