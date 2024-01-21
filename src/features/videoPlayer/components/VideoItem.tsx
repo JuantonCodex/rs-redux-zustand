@@ -1,18 +1,18 @@
 import { PlayCircle, Video } from "lucide-react";
 
-interface ILessonProps {
+interface IVideoItemProps {
   title: string;
   duration: string;
   onPlay: () => void;
   isCurrent?: boolean;
 }
 
-export function CourseLesson({
+export function VideoItem({
   title,
   duration,
   onPlay,
   isCurrent = false,
-}: Readonly<ILessonProps>) {
+}: Readonly<IVideoItemProps>) {
   return (
     <button
       data-active={isCurrent}

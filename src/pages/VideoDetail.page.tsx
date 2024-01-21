@@ -3,17 +3,17 @@ import { VideoPlayer } from "../shared/components/VideoPlayer/VideoPlayer";
 import { MessageCircle } from "lucide-react";
 import { useAppSelector } from "../store";
 import { SEOHead } from "../shared/components/SEOHead";
-import { useCurrentLesson } from "../hooks";
+import { useVideo } from "../hooks";
 import { Button } from "../shared/components/Button/Button";
-import { CourseModule } from "../modules/course/components/CourseModule";
+import { VideoList } from "../features/videoPlayer/components/VideoList";
 import { useDispatch } from "react-redux";
 import { next } from "../store/slices/player";
 import { useEffect } from "react";
 import { searchVideo } from "../services";
 
-export function Course() {
+export function VideoDetail() {
   const dispatch = useDispatch();
-  const { currentLesson } = useCurrentLesson();
+  const { currentLesson } = useVideo();
   const modules = useAppSelector((state) => {
     return state.player.course.modules;
   });
@@ -31,6 +31,7 @@ export function Course() {
     };
     getVideos();
   }, []);
+
   return (
     <div className="h-screen bg-zinc-950 text-zinc-50 flex justify-center items-center p-4">
       <SEOHead
@@ -55,7 +56,7 @@ export function Course() {
           </div>
           <aside className="top-0 bottom-0 right-0 border-l divide-y-2 divide-zinc-900 border-zinc-800 bg-zinc-900 overflow-y-scroll scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 tablet:absolute tablet:w-80">
             {modules.map(({ id, title, lessons }, index) => (
-              <CourseModule
+              <VideoList
                 key={id}
                 moduleIndex={index}
                 title={title}

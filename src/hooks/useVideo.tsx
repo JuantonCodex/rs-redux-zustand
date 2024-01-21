@@ -1,6 +1,6 @@
 import { useAppSelector } from "../store";
 
-export const useCurrentLesson = () => {
+export const useVideo = () => {
   const { currentModule, currentLesson } = useAppSelector((state) => {
     const { currentModuleIndex, currentLessonIndex } = state.player;
 

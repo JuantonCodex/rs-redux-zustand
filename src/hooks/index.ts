@@ -1,1 +1,1 @@
-export * from "./useCurrentLesson";
+export * from "./useVideo";

@@ -3,19 +3,19 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 import { useAppSelector } from "../../../store";
 import { useDispatch } from "react-redux";
 import { play } from "../../../store/slices/player";
-import { CourseLesson } from "./CourseLesson";
+import { VideoItem } from "./VideoItem";
 
-interface IModuleProps {
+interface IVideoListProps {
   moduleIndex: number;
   title: string;
   lessonsCount: number;
 }
 
-export function CourseModule({
+export function VideoList({
   moduleIndex,
   title,
   lessonsCount,
-}: Readonly<IModuleProps>) {
+}: Readonly<IVideoListProps>) {
   const dispatch = useDispatch();
 
   const data = useAppSelector((state) => {
@@ -63,7 +63,7 @@ export function CourseModule({
                 data.currentLessonIndex === lessonIndex;
 
               return (
-                <CourseLesson
+                <VideoItem
                   key={lesson.id}
                   title={lesson.title}
                   duration={lesson.duration}
