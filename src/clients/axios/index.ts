@@ -1,10 +1,14 @@
 import axios from "axios";
-import { endpoint } from "../../api/constants";
+import { videoEndpoint } from "../../api/constants";
+import { getGlobalConfiguration } from "../../configuration/global";
 
 export const axiosClient = () => {
   return axios.create({
-    baseURL: endpoint,
-    timeout: 1000,
+    baseURL: videoEndpoint,
+    timeout: 3000,
+    params: {
+      key: getGlobalConfiguration().google.API_KEY,
+    },
     headers: {
       Accept: "application/json",
     },
