@@ -14,6 +14,32 @@ This project is an application that uses React and Redux to manage a video playe
   </tr>
 </table>
 
+## Project Structure
+
+```text
+src/
+├── api
+├── clients
+│   ├── axios
+│   ├── graphql-requests
+├── configuration
+├── features                # Logic and UI of a especific feature
+│   └── videoPlayer         # Video player feature
+│       └── components      # Specific components of the feature
+
+├── hooks                   # Global React custom hooks
+├── modules                 # Business logic and state management
+│   └── youtube             # Logic of how we use Youtube resources in this project
+├── pages
+├── services
+├── shared
+│   └── components
+├── store
+├── styles
+├── tests
+├── theme
+```
+
 
 ## Installation
 
