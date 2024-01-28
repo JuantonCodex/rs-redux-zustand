@@ -1,4 +1,4 @@
-import { useVideo } from "../../hooks";
+import { useVideo } from "../../../hooks";
 
 export function Header() {
   const { currentLesson, currentModule } = useVideo();

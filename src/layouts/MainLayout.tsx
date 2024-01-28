@@ -1,6 +1,6 @@
 import { Outlet } from "@tanstack/react-router";
 import { Button } from "../shared/components/Button";
-import { SEOHead } from "../shared/components/SEOHead";
+import { SEOHead } from "../shared/components/SEOHead/SEOHead";
 
 export function MainLayout() {
   return (

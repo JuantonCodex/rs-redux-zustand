@@ -1,10 +1,10 @@
-import { Header } from "../../shared/components/Header";
-import { VideoPlayer } from "../../shared/components/VideoPlayer/VideoPlayer";
+import { Header } from "./components/Header";
+import { VideoPlayer } from "../../shared/components/VideoPlayer";
 import { MessageCircle } from "lucide-react";
 import { useAppSelector } from "../../store";
 import { SEOHead } from "../../shared/components/SEOHead";
 import { useVideo } from "../../hooks";
-import { Button } from "../../shared/components/Button/Button";
+import { Button } from "../../shared/components/Button";
 import { VideoList } from "../../features/videoPlayer/components/VideoList";
 import { useDispatch } from "react-redux";
 import { next } from "../../store/slices/player";
