@@ -1,10 +1,8 @@
-import { Route, Router } from "@tanstack/react-router";
+import { Route, Router, RootRoute } from "@tanstack/react-router";
 import { Home } from "../pages/Home.page";
-import { VideoDetail } from "../pages/VideoDetail.page";
+import { VideoDetail } from "../pages/video-detail/VideoDetail.page";
 import { BASE_PATH } from "../configuration/contants";
-import { RootRoute } from "@tanstack/react-router";
-import { RootLayout } from "../layouts/RootLayout";
-import { MainLayout } from "../layouts/MainLayout";
+import { MainLayout, RootLayout } from "../layouts";
 
 const rootRoute = new RootRoute({
   component: RootLayout,
