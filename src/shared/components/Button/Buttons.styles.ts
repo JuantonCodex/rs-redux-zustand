@@ -3,8 +3,8 @@ import { theme, TButtonVariant, TButtonColor } from "../../../theme";
 export const getClassNames = (variant: TButtonVariant, color: TButtonColor) => {
   const defaultClassNames = Object.values(theme.defaultStyles).join(" ");
 
-  const { textColor, border, backgroundColor } =
+  const { textColor, border, backgroundColor, hoverBackgroundColor } =
     theme.variants.button[variant][color];
 
-  return `${defaultClassNames} ${textColor} ${border} ${backgroundColor}`;
+  return `${defaultClassNames} ${textColor} ${border} ${backgroundColor} ${hoverBackgroundColor}`;
 };
