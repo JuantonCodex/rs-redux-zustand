@@ -1,6 +1,6 @@
 import { Route, Router, RootRoute } from "@tanstack/react-router";
-import { Home } from "../pages/Home.page";
-import { VideoDetail } from "../pages/video-detail/VideoDetail.page";
+import { Home } from "../pages/home";
+import { VideoDetail } from "../pages/video-detail";
 import { BASE_PATH } from "../configuration/contants";
 import { MainLayout, RootLayout } from "../layouts";
 

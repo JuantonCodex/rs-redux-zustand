@@ -1,5 +1,5 @@
-import { useSearchVideo } from "../modules/youtube/hooks";
-import { Button } from "../shared/components/Button";
+import { useSearchVideo } from "../../modules/youtube/hooks";
+import { Button } from "../../shared/components/Button";
 
 export function Home() {
   const { data, refetch } = useSearchVideo();
@@ -10,7 +10,7 @@ export function Home() {
 
   console.log("validando", data);
   return (
-    <div className="flex p-4 flex-col w-full">
+    <div className="flex w-full flex-col p-4">
       <div className="w-full">
         <Button
           variant="contained"
@@ -20,11 +20,11 @@ export function Home() {
           Buscar Vídeos
         </Button>
       </div>
-      <div className="pt-4 grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 pt-4">
         {data?.items.map(({ snippet }) => (
           <div
             key={snippet.thumbnails.default.url}
-            className="flex justify-center items-center rounded-lg overflow-hidden"
+            className="flex items-center justify-center overflow-hidden rounded-lg"
           >
             <img
               src={snippet.thumbnails.high.url}
