@@ -1,7 +1,7 @@
-import { useCurrentLesson } from "../../hooks";
+import { useVideo } from "../../hooks";
 
 export function Header() {
-  const { currentLesson, currentModule } = useCurrentLesson();
+  const { currentLesson, currentModule } = useVideo();
 
   return (
     <div className="flex flex-col gap-1">
