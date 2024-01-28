@@ -8,8 +8,6 @@ import { Button } from "../shared/components/Button/Button";
 import { VideoList } from "../features/videoPlayer/components/VideoList";
 import { useDispatch } from "react-redux";
 import { next } from "../store/slices/player";
-import { useEffect } from "react";
-import { searchVideo } from "../services";
 
 export function VideoDetail() {
   const dispatch = useDispatch();
@@ -21,16 +19,6 @@ export function VideoDetail() {
   const handleOnNextVideo = () => {
     dispatch(next());
   };
-
-  useEffect(() => {
-    const getVideos = async () => {
-      const res = await searchVideo({
-        query: "judo",
-      });
-      console.log("res", res);
-    };
-    getVideos();
-  }, []);
 
   return (
     <div className="h-screen bg-zinc-950 text-zinc-50 flex justify-center items-center p-4">
