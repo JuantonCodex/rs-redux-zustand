@@ -4,16 +4,22 @@ import { SEOHead } from "../shared/components/SEOHead";
 
 export function MainLayout() {
   return (
-    <div className="h-auto min-h-screen bg-zinc-950 text-zinc-50 flex justify-center p-4 items-start">
+    <>
       <SEOHead title={`Video App`} description={`Video App`} />
-      <div className="flex w-[1100px] flex-col gap-6">
-        <div className="flex items-center justify-between">
-          <Button variant="contained">Deixar feedback</Button>
-        </div>
-        <div className="flex flex-col relative rounded-lg border border-zinc-800 bg-zinc-900 shadow">
-          <Outlet />
+      <div className="flex h-auto min-h-screen items-start justify-center bg-zinc-950 p-4 text-zinc-50">
+        <div className="flex w-full max-w-[1100px] flex-col gap-6">
+          {/* HEADER */}
+          <div className="flex items-center justify-end">
+            <Button variant="contained" color="warning">
+              Contactar
+            </Button>
+          </div>
+          {/* CONTENT */}
+          <div className="relative flex flex-col rounded-lg border border-zinc-800 bg-zinc-900 shadow">
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
