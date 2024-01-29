@@ -1,20 +1,20 @@
 /* State */
 export interface IPlayerState {
-  course: ICourse | null;
-  currentModuleIndex: number;
-  currentLessonIndex: number;
+  collection: ICollection | null;
+  currentVideoListIndex: number;
+  currentVideoIndex: number;
 }
-export interface ICourse {
-  modules: IModule[];
+export interface ICollection {
+  videoLists: IVideoList[];
 }
 
-export interface IModule {
+export interface IVideoList {
   id: string;
   title: string;
-  lessons: ILesson[];
+  videos: IVideo[];
 }
 
-export interface ILesson {
+export interface IVideo {
   id: string;
   title: string;
   duration: string;
@@ -22,6 +22,6 @@ export interface ILesson {
 
 /* Actions */
 export type TActions = {
-  play: { moduleIndex: number; lessonIndex: number };
+  play: { videoListIndex: number; videoIndex: number };
   next: () => void;
 };

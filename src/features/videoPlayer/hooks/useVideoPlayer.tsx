@@ -1,23 +1,26 @@
 import { useAppSelector } from "../../../store";
-import { ILesson, IModule } from "../interfaces";
+import { IVideo, IVideoList } from "../interfaces";
 
 interface IReturn {
-  currentModule: IModule | undefined;
-  currentLesson: ILesson | undefined;
+  currentVideoList: IVideoList | undefined;
+  currentVideo: IVideo | undefined;
 }
 export const useVideoPlayer = (): IReturn => {
-  const { currentModule, currentLesson } = useAppSelector((state) => {
-    const { currentModuleIndex, currentLessonIndex } = state.player;
+  const { currentVideoList, currentVideo } = useAppSelector((state) => {
+    const {
+      currentVideoListIndex: currentModuleIndex,
+      currentVideoIndex: currentVideoIndex,
+    } = state.player;
 
-    const currentModule = state.player.course?.modules[currentModuleIndex];
-    const currentLesson = currentModule?.lessons[currentLessonIndex];
-    console.log("currentModule", currentModule, currentLesson);
+    const currentVideoList =
+      state.player.collection?.videoLists[currentModuleIndex];
+    const currentVideo = currentVideoList?.videos[currentVideoIndex];
 
-    return { currentModule, currentLesson };
+    return { currentVideoList, currentVideo };
   });
 
   return {
-    currentModule,
-    currentLesson,
+    currentVideoList,
+    currentVideo,
   };
 };

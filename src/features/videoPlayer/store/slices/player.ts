@@ -9,9 +9,9 @@ import { IPlayerState, TActions } from "../../interfaces";
  */
 
 const defaultState: IPlayerState = {
-  course: null,
-  currentModuleIndex: 0,
-  currentLessonIndex: 0,
+  collection: null,
+  currentVideoListIndex: 0,
+  currentVideoIndex: 0,
 };
 
 const playerSlice = createSlice({
@@ -19,21 +19,23 @@ const playerSlice = createSlice({
   initialState: defaultState,
   reducers: {
     play: (state, action: PayloadAction<TActions["play"]>) => {
-      state.currentModuleIndex = action.payload.moduleIndex;
-      state.currentLessonIndex = action.payload.lessonIndex;
+      state.currentVideoListIndex = action.payload.videoListIndex;
+      state.currentVideoIndex = action.payload.videoIndex;
     },
     next: (state) => {
-      const nextLessonIndex = state.currentLessonIndex + 1;
-      const nextLesson =
-        state.course?.modules[state.currentModuleIndex].lessons[
-          nextLessonIndex
+      const nextVideoIndex = state.currentVideoIndex + 1;
+      const nextVideo =
+        state.collection?.videoLists[state.currentVideoListIndex].videos[
+          nextVideoIndex
         ];
 
-      if (nextLesson) {
-        state.currentLessonIndex = nextLessonIndex;
-      } else if (state.course?.modules[state.currentModuleIndex + 1]) {
-        state.currentModuleIndex += 1;
-        state.currentLessonIndex = 0;
+      if (nextVideo) {
+        state.currentVideoIndex = nextVideoIndex;
+      } else if (
+        state.collection?.videoLists[state.currentVideoListIndex + 1]
+      ) {
+        state.currentVideoListIndex += 1;
+        state.currentVideoIndex = 0;
       }
     },
   },
