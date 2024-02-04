@@ -4,7 +4,7 @@ import { store } from "./store";
 import { HelmetProvider } from "react-helmet-async";
 import { AppRouterProvider } from "./routes/components/AppRouterProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "./App.css";
+import "./index.css";
 const queryClient = new QueryClient();
 export function App() {
   return (
