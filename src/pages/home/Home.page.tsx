@@ -4,11 +4,8 @@ import { Button } from "../../shared/components/Button";
 export function Home() {
   const { data, refetch } = useSearchVideo();
 
-  const handleClickSearchVideo = () => {
-    refetch();
-  };
+  const handleClickSearchVideo = () => refetch();
 
-  console.log("validando", data);
   return (
     <div className="flex w-full flex-col p-4">
       <div className="w-full">

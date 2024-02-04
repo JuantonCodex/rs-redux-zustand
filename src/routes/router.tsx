@@ -2,7 +2,7 @@ import { Route, Router, RootRoute } from "@tanstack/react-router";
 import { Home } from "../pages/home";
 import { VideoDetail } from "../pages/video-detail";
 import { BASE_PATH } from "../configuration/contants";
-import { MainLayout, RootLayout } from "../layouts";
+import { MainLayout, RootLayout, SidebarLayout } from "../layouts";
 
 const rootRoute = new RootRoute({
   component: RootLayout,
@@ -10,12 +10,18 @@ const rootRoute = new RootRoute({
 
 const mainLayoutRoute = new Route({
   getParentRoute: () => rootRoute,
-  id: "layout",
+  id: "mainlayout",
   component: MainLayout,
 });
 
+const sidebarLayoutRoute = new Route({
+  getParentRoute: () => rootRoute,
+  id: "secondarylayout",
+  component: SidebarLayout,
+});
+
 const homeRoute = new Route({
-  getParentRoute: () => mainLayoutRoute,
+  getParentRoute: () => sidebarLayoutRoute,
   path: "/",
   component: Home,
 });
@@ -27,6 +33,7 @@ const videoDetailRoute = new Route({
 });
 
 const routeTree = rootRoute.addChildren([
-  mainLayoutRoute.addChildren([homeRoute, videoDetailRoute]),
+  mainLayoutRoute.addChildren([videoDetailRoute]),
+  sidebarLayoutRoute.addChildren([homeRoute]),
 ]);
 export const router = new Router({ routeTree, basepath: BASE_PATH });
