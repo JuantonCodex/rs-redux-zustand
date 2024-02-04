@@ -44,7 +44,7 @@ src/
 ## Installation
 
 ```
-npm install
+bun install
 ```
 
 ## Development
@@ -66,4 +66,16 @@ npm run deploy
 
 ## Credits
 
-This project was created following the base code of an example from the Rocketseat platform.
+This project was created following the base code of an example from the Rocketseat platform and resources from Figma Community
+
+### Design Attribution
+
+The design of this application is based on, the "Skateboard Video Platform" designed by [@dwinawan](https://www.dwinawan.com). This design is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). We have adapted this design to fit the needs of our project while adhering to the terms of the CC BY 4.0 license.
+
+
+#### Acknowledgments
+
+- **Design Title**: Skateboard Video Platform
+- **Designer**: [@dwinawan](https://www.dwinawan.com)
+- **Source**: [Figma Community File](https://www.figma.com/community/file/990181064583275410/skateboard-video-platform)
+- **License**: [Creative Commons Attribution 4.0 International (CC BY 4.0)](http://creativecommons.org/licenses/by/4.0/)

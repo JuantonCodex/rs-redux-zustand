@@ -17,7 +17,7 @@ export function useSearchVideo(): IReturn {
     enabled: false,
   });
 
-  console.log("data:", isLoading, data);
+  console.log("useSearchVideo > data:", isLoading, data);
   return {
     data,
     refetch,
