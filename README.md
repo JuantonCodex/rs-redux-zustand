@@ -44,7 +44,7 @@ src/
 ## Installation
 
 ```
-npm install
+bun install
 ```
 
 ## Development
