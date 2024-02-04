@@ -11,10 +11,12 @@ import ReactPlayer from "react-player";
 
 export function VideoDetail() {
   const dispatch = useDispatch();
-  const { currentLesson } = useVideoPlayer();
-  const pageTitle = currentLesson?.title || "";
+  const { currentVideo } = useVideoPlayer();
+  const pageTitle = currentVideo?.title ?? "";
 
   const modules = useAppSelector((state) => {
+
+  const videoLists = useAppSelector((state) => {
     return state.player.collection?.videoLists;
   });
 
@@ -37,7 +39,7 @@ export function VideoDetail() {
         </div>
         <main className="relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow tablet:flex-row tablet:pr-80">
           <div className="flex-1">
-            {currentLesson && (
+            {currentVideo && (
               <div className="aspect-video w-full bg-zinc-950">
                 <ReactPlayer
                   width="100%"
@@ -45,18 +47,18 @@ export function VideoDetail() {
                   controls
                   playing
                   onEnded={handleOnNextVideo}
-                  url={`https://www.youtube.com/watch?v=${currentLesson.id}`}
+                  url={`https://www.youtube.com/watch?v=${currentVideo.id}`}
                 />
               </div>
             )}
           </div>
           <aside className="bottom-0 right-0 top-0 divide-y-2 divide-zinc-900 overflow-y-scroll border-l border-zinc-800 bg-zinc-900 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 tablet:absolute tablet:w-80">
-            {modules?.map(({ id, title, videos: lessons }, index) => (
+            {videoLists?.map(({ id, title, videos }, index) => (
               <VideoList
                 key={id}
                 videoListIndex={index}
                 title={title}
-                videoListsCount={lessons.length}
+                videoListsCount={videos.length}
               />
             ))}
           </aside>

@@ -7,13 +7,10 @@ interface IReturn {
 }
 export const useVideoPlayer = (): IReturn => {
   const { currentVideoList, currentVideo } = useAppSelector((state) => {
-    const {
-      currentVideoListIndex: currentModuleIndex,
-      currentVideoIndex: currentVideoIndex,
-    } = state.player;
+    const { currentVideoListIndex, currentVideoIndex } = state.player;
 
     const currentVideoList =
-      state.player.collection?.videoLists[currentModuleIndex];
+      state.player.collection?.videoLists[currentVideoListIndex];
     const currentVideo = currentVideoList?.videos[currentVideoIndex];
 
     return { currentVideoList, currentVideo };
