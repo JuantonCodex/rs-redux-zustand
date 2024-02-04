@@ -14,8 +14,6 @@ export function VideoDetail() {
   const { currentVideo } = useVideoPlayer();
   const pageTitle = currentVideo?.title ?? "";
 
-  const modules = useAppSelector((state) => {
-
   const videoLists = useAppSelector((state) => {
     return state.player.collection?.videoLists;
   });
@@ -37,7 +35,7 @@ export function VideoDetail() {
             Reportar incoveniente
           </Button>
         </div>
-        <main className="relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow tablet:flex-row tablet:pr-80">
+        <main className="tablet:flex-row tablet:pr-80 relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow">
           <div className="flex-1">
             {currentVideo && (
               <div className="aspect-video w-full bg-zinc-950">
@@ -52,7 +50,7 @@ export function VideoDetail() {
               </div>
             )}
           </div>
-          <aside className="bottom-0 right-0 top-0 divide-y-2 divide-zinc-900 overflow-y-scroll border-l border-zinc-800 bg-zinc-900 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 tablet:absolute tablet:w-80">
+          <aside className="scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 tablet:absolute tablet:w-80 bottom-0 right-0 top-0 divide-y-2 divide-zinc-900 overflow-y-scroll border-l border-zinc-800 bg-zinc-900">
             {videoLists?.map(({ id, title, videos }, index) => (
               <VideoList
                 key={id}
