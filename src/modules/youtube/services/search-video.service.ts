@@ -1,24 +1,27 @@
 import { axiosClient } from "../../../clients";
-import { IVideoSearchResponse } from "./interfaces";
+import { IVideoSearchResponse } from "../types";
 
 interface ISearchVideoService {
   query: string;
-  type?: string;
+  searchPart?: string;
   pageToken?: string;
+  type?: string;
 }
 
 export const searchVideoService = async ({
   query,
-  type = "snippet",
+  searchPart = "snippet",
   pageToken = "",
+  type = "video",
 }: ISearchVideoService): Promise<IVideoSearchResponse> => {
   try {
     const response = await axiosClient().get("/search", {
       params: {
         q: query,
-        part: type,
+        part: searchPart,
         pageToken: pageToken,
         maxResults: 10,
+        type,
       },
     });
     return response.data;

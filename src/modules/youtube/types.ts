@@ -1,13 +1,13 @@
-interface IThumbnailSize {
+interface IThumbnailItem {
   url: string;
   width: number;
   height: number;
 }
 
 interface Thumbnails {
-  default: IThumbnailSize;
-  medium: IThumbnailSize;
-  high: IThumbnailSize;
+  default: IThumbnailItem;
+  medium: IThumbnailItem;
+  high: IThumbnailItem;
 }
 
 export interface IVideoSearchResponse {
