@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { next } from "../../features/videoPlayer/store/slices/player";
 import ReactPlayer from "react-player";
 
-export function VideoDetail() {
+export function VideoDetailPage() {
   const dispatch = useDispatch();
   const { currentVideo } = useVideoPlayer();
   const pageTitle = currentVideo?.title ?? "";

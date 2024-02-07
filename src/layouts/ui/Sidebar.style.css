@@ -1,0 +1,3 @@
+.cm-scrollbar {
+  @apply scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800;
+}

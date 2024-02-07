@@ -1,5 +1,5 @@
-import { Outlet } from "@tanstack/react-router";
-import { SEOHead } from "../shared/components/SEOHead/SEOHead";
+import { Link, Outlet } from "@tanstack/react-router";
+import { SEOHead } from "../../shared/components/SEOHead/SEOHead";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/resizable";
 import { useMediaQuery } from "@/hooks/mediaQuery/useMediaQuery";
 import { screens } from "@/theme/screens";
+import Logo from "@/assets/logo_transparent.png";
 
 export function SidebarLayout() {
   const isTablet = useMediaQuery(`(min-width: ${screens.md})`);
@@ -16,15 +17,22 @@ export function SidebarLayout() {
       <div className="mx-auto flex h-full w-full max-w-[1100px] justify-center">
         <SEOHead title={`Video App`} description={`Video App`} />
         <ResizablePanelGroup direction={direction}>
-          <ResizablePanel className="flex max-h-[70px] flex-col p-3 md:max-h-full md:max-w-[220px] ">
-            <div className="pb-6 pt-4 text-center">
-              <h2 className="text-sm uppercase">Menu</h2>
-            </div>
-            <div className="flex flex-col gap-3"></div>
+          <ResizablePanel className="flex max-h-[120px] items-center gap-6 p-3 md:max-h-full md:max-w-[220px] md:flex-col">
+            <nav className="flex w-full justify-center">
+              <Link to="/">
+                <img
+                  src={Logo}
+                  alt="Video Player"
+                  className="inline-block max-w-[100px] md:max-w-full md:p-4"
+                />
+              </Link>
+            </nav>
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel>
-            <Outlet />
+            <div className="scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-600 h-full overflow-y-auto">
+              <Outlet />
+            </div>
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>

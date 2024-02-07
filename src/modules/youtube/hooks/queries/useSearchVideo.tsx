@@ -19,6 +19,8 @@ export function useSearchVideo(): IReturn {
   const [searchCondition, setSearchCondition] =
     useState<ISearchCondition | null>(null);
 
+  console.log("searchCondition >", searchCondition);
+
   const { data, refetch } = useQuery<IVideoSearchResponse>({
     queryKey: ["ty-videos", searchCondition?.type],
     queryFn: async () =>
@@ -27,7 +29,7 @@ export function useSearchVideo(): IReturn {
         ...searchCondition,
       }),
     enabled: searchCondition !== null,
-    staleTime: 5000,
+    staleTime: 60000,
     refetchOnWindowFocus: false,
   });
 

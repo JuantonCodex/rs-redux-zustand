@@ -1,8 +1,8 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useSearchVideo } from "../../modules/youtube/hooks";
-import { Button } from "../../shared/components/Button";
+import { Button } from "@/components/ui/button";
 
-export function Home() {
+export function HomePage() {
   const { data, updateSearchCondition } = useSearchVideo();
   const navigate = useNavigate();
   const handleClickSearchVideo = (type: string) => {
@@ -11,36 +11,32 @@ export function Home() {
 
   const handleViewDetails = () => {
     navigate({
-      to: "/video",
-      params: {
-        id: 1,
-      },
+      to: "/video-list/$id",
+      params: { id: "1" },
     });
   };
 
   return (
     <div className="flex w-full flex-col p-4">
-      <div className="w-full">
+      <div className="flex w-full justify-center gap-3 md:justify-normal">
         <Button
-          variant="contained"
-          color="secondary"
+          variant="secondary"
           onClick={() => handleClickSearchVideo("video")}
         >
-          Buscar Vídeos
+          Buscar vídeo
         </Button>
         <Button
-          variant="contained"
-          color="secondary"
+          variant="secondary"
           onClick={() => handleClickSearchVideo("playlist")}
         >
-          Buscar Playlist
+          Buscar playlist
         </Button>
       </div>
-      <div className="grid grid-cols-3 gap-4 pt-4">
+      <div className="grid grid-cols-2 gap-4 pt-4 md:grid-cols-3">
         {data?.items.map(({ snippet }) => (
-          <div
+          <button
             key={snippet.thumbnails.default.url}
-            className="flex items-center justify-center overflow-hidden rounded-lg"
+            className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg"
             onClick={handleViewDetails}
           >
             <img
@@ -48,7 +44,7 @@ export function Home() {
               alt={snippet.title}
               className="w-full"
             />
-          </div>
+          </button>
         ))}
       </div>
     </div>
