@@ -1,30 +1,30 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
-import { searchVideoService } from "../../services/search-video.service";
-import { IVideoSearchResponse } from "../../types";
+import { searchService } from "../../services/search.service";
+import { ICommonRequestResponse, TResourceType } from "../../types";
 import { useState } from "react";
 
 const DEFAULT_QUERY = "judo";
 
-interface IReturn {
-  data: IVideoSearchResponse | undefined;
-  refetch: UseQueryResult<IVideoSearchResponse>["refetch"];
-  updateSearchCondition: ({ type }: { type: string }) => void;
+interface ISearchReturn {
+  data: ICommonRequestResponse | undefined;
+  refetch: UseQueryResult<ICommonRequestResponse>["refetch"];
+  updateSearchCondition: (condition: { type: TResourceType }) => void;
 }
 
 interface ISearchCondition {
-  type: string;
+  type: TResourceType;
 }
 
-export function useSearchVideo(): IReturn {
+export function useSearchVideo(): ISearchReturn {
   const [searchCondition, setSearchCondition] =
     useState<ISearchCondition | null>(null);
 
   console.log("searchCondition >", searchCondition);
 
-  const { data, refetch } = useQuery<IVideoSearchResponse>({
+  const { data, refetch } = useQuery<ICommonRequestResponse>({
     queryKey: ["ty-videos", searchCondition?.type],
     queryFn: async () =>
-      searchVideoService({
+      searchService({
         query: DEFAULT_QUERY,
         ...searchCondition,
       }),

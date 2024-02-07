@@ -1,11 +1,12 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useSearchVideo } from "../../modules/youtube/hooks";
+import { useSearchVideo } from "@/modules/youtube/hooks";
 import { Button } from "@/components/ui/button";
+import { TResourceType } from "@/modules/youtube/types";
 
 export function HomePage() {
   const { data, updateSearchCondition } = useSearchVideo();
   const navigate = useNavigate();
-  const handleClickSearchVideo = (type: string) => {
+  const handleClickSearchVideo = ({ type }: { type: TResourceType }) => {
     updateSearchCondition({ type });
   };
 
@@ -21,13 +22,21 @@ export function HomePage() {
       <div className="flex w-full justify-center gap-3 md:justify-normal">
         <Button
           variant="secondary"
-          onClick={() => handleClickSearchVideo("video")}
+          onClick={() =>
+            handleClickSearchVideo({
+              type: "video",
+            })
+          }
         >
           Buscar vídeo
         </Button>
         <Button
           variant="secondary"
-          onClick={() => handleClickSearchVideo("playlist")}
+          onClick={() =>
+            handleClickSearchVideo({
+              type: "playlist",
+            })
+          }
         >
           Buscar playlist
         </Button>

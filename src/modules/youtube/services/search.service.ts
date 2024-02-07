@@ -1,19 +1,19 @@
 import { axiosClient } from "../../../clients";
-import { IVideoSearchResponse } from "../types";
+import { ICommonRequestResponse, TResourceType } from "../types";
 
-interface ISearchVideoService {
+interface ISearchService {
   query: string;
   searchPart?: string;
   pageToken?: string;
-  type?: string;
+  type?: TResourceType;
 }
 
-export const searchVideoService = async ({
+export const searchService = async ({
   query,
   searchPart = "snippet",
   pageToken = "",
   type = "video",
-}: ISearchVideoService): Promise<IVideoSearchResponse> => {
+}: ISearchService): Promise<ICommonRequestResponse> => {
   try {
     const response = await axiosClient().get("/search", {
       params: {
@@ -26,7 +26,7 @@ export const searchVideoService = async ({
     });
     return response.data;
   } catch (error) {
-    console.error("Error while searching video:", error);
+    console.error("Error while searching:", error);
     throw error;
   }
 };
