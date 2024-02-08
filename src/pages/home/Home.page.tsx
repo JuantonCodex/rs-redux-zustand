@@ -3,6 +3,7 @@ import { useSearch } from "@/modules/youtube/hooks";
 import { Button } from "@/components/ui/button";
 import { TResourceType } from "@/modules/youtube/types/common.types";
 import { CRoutePath } from "@/routes/types/route-path";
+import { useEffect } from "react";
 
 export function HomePage() {
   const { data, updateSearchCondition } = useSearch();
@@ -17,6 +18,12 @@ export function HomePage() {
       params: { id: resourceId },
     });
   };
+
+  useEffect(() => {
+    updateSearchCondition({
+      type: "video",
+    });
+  }, []);
 
   return (
     <div className="flex w-full flex-col p-4">

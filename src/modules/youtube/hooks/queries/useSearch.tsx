@@ -48,7 +48,7 @@ export function useSearch(): ISearchReturn {
         ...searchCondition,
       }),
     enabled: searchCondition !== null,
-    staleTime: 60000,
+    staleTime: 1000 * 60 * 10, // ten minutes
     refetchOnWindowFocus: false,
   });
 
