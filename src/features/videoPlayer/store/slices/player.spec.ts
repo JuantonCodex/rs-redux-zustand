@@ -6,8 +6,8 @@ describe("player slice", () => {
     const state = reducer(
       COURSE_DATA_MOCKED,
       play({
-        moduleIndex: 1,
-        lessonIndex: 1,
+        videoListIndex: 1,
+        videoIndex: 1,
       }),
     );
     expect(state.currentVideoListIndex).toEqual(1);

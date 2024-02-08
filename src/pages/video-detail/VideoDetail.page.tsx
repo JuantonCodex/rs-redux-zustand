@@ -8,9 +8,17 @@ import { VideoList } from "../../features/videoPlayer/components/VideoList";
 import { useDispatch } from "react-redux";
 import { next } from "../../features/videoPlayer/store/slices/player";
 import ReactPlayer from "react-player";
+import { useVideoDetail } from "./hooks/useVideoDetail";
+import { useParams } from "@tanstack/react-router";
 
-export function VideoDetail() {
+interface IRouteParams {
+  id: string;
+}
+
+export function VideoDetailPage() {
   const dispatch = useDispatch();
+  const { id }: IRouteParams = useParams({ strict: false });
+
   const { currentVideo } = useVideoPlayer();
   const pageTitle = currentVideo?.title ?? "";
 
@@ -50,7 +58,7 @@ export function VideoDetail() {
               </div>
             )}
           </div>
-          <aside className="scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 tablet:absolute tablet:w-80 bottom-0 right-0 top-0 divide-y-2 divide-zinc-900 overflow-y-scroll border-l border-zinc-800 bg-zinc-900">
+          <aside className="tablet:absolute tablet:w-80 bottom-0 right-0 top-0 divide-y-2 divide-zinc-900 overflow-y-scroll border-l border-zinc-800 bg-zinc-900 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800">
             {videoLists?.map(({ id, title, videos }, index) => (
               <VideoList
                 key={id}
