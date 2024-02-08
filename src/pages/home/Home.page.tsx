@@ -1,19 +1,20 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useSearchVideo } from "@/modules/youtube/hooks";
+import { useSearch } from "@/modules/youtube/hooks";
 import { Button } from "@/components/ui/button";
-import { TResourceType } from "@/modules/youtube/types";
+import { TResourceType } from "@/modules/youtube/types/common.types";
+import { CRoutePath } from "@/routes/types/route-path";
 
 export function HomePage() {
-  const { data, updateSearchCondition } = useSearchVideo();
+  const { data, updateSearchCondition } = useSearch();
   const navigate = useNavigate();
   const handleClickSearchVideo = ({ type }: { type: TResourceType }) => {
     updateSearchCondition({ type });
   };
 
-  const handleViewDetails = () => {
+  const handleViewDetails = (resourceId: string) => {
     navigate({
-      to: "/video-list/$id",
-      params: { id: "1" },
+      to: CRoutePath.VIDEO_LIST,
+      params: { id: resourceId },
     });
   };
 
@@ -42,11 +43,11 @@ export function HomePage() {
         </Button>
       </div>
       <div className="grid grid-cols-2 gap-4 pt-4 md:grid-cols-3">
-        {data?.items.map(({ snippet }) => (
+        {data?.items.map(({ id, snippet }) => (
           <button
             key={snippet.thumbnails.default.url}
             className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg"
-            onClick={handleViewDetails}
+            onClick={() => handleViewDetails(id.id)}
           >
             <img
               src={snippet.thumbnails.high.url}

@@ -1,1 +1,1 @@
-export * from "./queries/useSearchVideo";
+export * from "./queries/useSearch";

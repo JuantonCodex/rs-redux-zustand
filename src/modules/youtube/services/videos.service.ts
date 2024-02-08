@@ -1,20 +1,20 @@
 import { axiosClient } from "@/clients";
-import { ICommonRequestResponse } from "../types";
+import { IVideosResponse } from "../types/videos.types";
 
-interface IVideosService {
+interface IVideosParamsService {
   part?: string;
-  id: string;
+  videoId: string;
 }
 
 export const videosService = async ({
   part = "snippet,contentDetails",
-  id,
-}: IVideosService): Promise<ICommonRequestResponse> => {
+  videoId,
+}: IVideosParamsService): Promise<IVideosResponse> => {
   try {
     const response = await axiosClient().get("/videos", {
       params: {
         part,
-        id,
+        id: videoId,
       },
     });
     return response.data;
