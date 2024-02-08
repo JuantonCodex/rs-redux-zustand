@@ -36,7 +36,7 @@ interface ISearchCondition {
   type: TResourceType;
 }
 
-export function useSearch(): ISearchReturn {
+export function useSearchQuery(): ISearchReturn {
   const [searchCondition, setSearchCondition] =
     useState<ISearchCondition | null>(null);
 
@@ -48,11 +48,11 @@ export function useSearch(): ISearchReturn {
         ...searchCondition,
       }),
     enabled: searchCondition !== null,
-    staleTime: 1000 * 60 * 10, // ten minutes
+    staleTime: 1000 * 60 * 30, // thirty minutes
     refetchOnWindowFocus: false,
   });
 
-  const homologatedItems =
+  const standardizedItems =
     query?.data?.items.map((item: IVideoItem | IPlaylistItem) => {
       let resourceId = "videoId";
       if ("videoId" in item.id) {
@@ -70,15 +70,15 @@ export function useSearch(): ISearchReturn {
       };
     }) ?? [];
 
-  const homologatedData = query.data
+  const standardizedData = query.data
     ? {
         ...query.data,
-        items: homologatedItems,
+        items: standardizedItems,
       }
     : undefined;
 
   return {
-    data: homologatedData,
+    data: standardizedData,
     refetch: query.refetch,
     updateSearchCondition: setSearchCondition,
   };

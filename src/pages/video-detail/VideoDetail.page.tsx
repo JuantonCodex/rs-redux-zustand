@@ -8,8 +8,8 @@ import { VideoList } from "../../features/videoPlayer/components/VideoList";
 import { useDispatch } from "react-redux";
 import { next } from "../../features/videoPlayer/store/slices/player";
 import ReactPlayer from "react-player";
-import { useVideoDetail } from "./hooks/useVideoDetail";
 import { useParams } from "@tanstack/react-router";
+import { usePlaylistDetailsQuery } from "@/modules/youtube/hooks/queries";
 
 interface IRouteParams {
   id: string;
@@ -18,7 +18,12 @@ interface IRouteParams {
 export function VideoDetailPage() {
   const dispatch = useDispatch();
   const { id }: IRouteParams = useParams({ strict: false });
+  const { data } = usePlaylistDetailsQuery({
+    isEnabled: true,
+    playlistId: id,
+  });
 
+  console.log("data", data);
   const { currentVideo } = useVideoPlayer();
   const pageTitle = currentVideo?.title ?? "";
 

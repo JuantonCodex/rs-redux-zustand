@@ -1,12 +1,13 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useSearch } from "@/modules/youtube/hooks";
+import { useSearchQuery } from "@/modules/youtube/hooks";
 import { Button } from "@/components/ui/button";
 import { TResourceType } from "@/modules/youtube/types/common.types";
 import { CRoutePath } from "@/routes/types/route-path";
 import { useEffect } from "react";
+import VideoPlayer from "@/features/videoPlayer/components/VideoPlayer";
 
 export function HomePage() {
-  const { data, updateSearchCondition } = useSearch();
+  const { data, updateSearchCondition } = useSearchQuery();
   const navigate = useNavigate();
   const handleClickSearchVideo = ({ type }: { type: TResourceType }) => {
     updateSearchCondition({ type });
@@ -19,10 +20,14 @@ export function HomePage() {
     });
   };
 
+  const handleGetListDetails = () => {
+    console.log("get details");
+  };
+
   useEffect(() => {
-    updateSearchCondition({
+    /* updateSearchCondition({
       type: "video",
-    });
+    }); */
   }, []);
 
   return (
@@ -49,6 +54,35 @@ export function HomePage() {
           Buscar playlist
         </Button>
       </div>
+      {/* start */}
+      <div>
+        <VideoPlayer id="player">
+          <VideoPlayer.CurrentVideo />
+          <VideoPlayer.Collection id="collection">
+            {data?.items.map(({ id, snippet }, index: number) => (
+              <VideoPlayer.List
+                key={id.id}
+                id={id.id}
+                title={snippet.title}
+                videoListIndex={index}
+                videoListsCount={0}
+                onClick={handleGetListDetails}
+              >
+                <VideoPlayer.Item
+                  key={"#1"}
+                  title={"Titulo"}
+                  duration={"03:90s"}
+                  onClick={() => {
+                    console.log("clicked");
+                  }}
+                  isCurrent={false}
+                />
+              </VideoPlayer.List>
+            ))}
+          </VideoPlayer.Collection>
+        </VideoPlayer>
+      </div>
+      {/* end */}
       <div className="grid grid-cols-2 gap-4 pt-4 md:grid-cols-3">
         {data?.items.map(({ id, snippet }) => (
           <button

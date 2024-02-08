@@ -14,7 +14,7 @@ export const playlistItemsService = async ({
     const response = await axiosClient().get("/playlistItems", {
       params: {
         part,
-        id: playlistId,
+        playlistId,
       },
     });
     return response.data;

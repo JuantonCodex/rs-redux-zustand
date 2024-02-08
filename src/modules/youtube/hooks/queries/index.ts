@@ -1,2 +1,2 @@
-export * from "./useSearch";
-export * from "./usePlaylist";
+export * from "./useSearch.query";
+export * from "./usePlaylistDetails.query";

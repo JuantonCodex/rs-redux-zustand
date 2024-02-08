@@ -3,7 +3,7 @@ import { playlistItemsService } from "../../services/playlistItems.service";
 import { useState } from "react";
 import { IPlaylistItemsResponse } from "../../types/playlist-items.types";
 
-interface IPlaylistReturn {
+interface IPlaylistDetailsReturn {
   data: IPlaylistItemsResponse | undefined;
   updateCondition: (condition: { playlistId: string }) => void;
 }
@@ -12,19 +12,25 @@ interface ICondition {
   playlistId: string;
 }
 
-export function usePlaylist(): IPlaylistReturn {
-  const [condition, setCondition] = useState<ICondition | null>();
-  console.log("playlist condition", condition);
+interface IPlaylistDetailsParams {
+  isEnabled: boolean;
+  playlistId: string;
+}
+
+export function usePlaylistDetailsQuery({
+  isEnabled,
+  playlistId,
+}: IPlaylistDetailsParams): IPlaylistDetailsReturn {
+  // This state change will trigger another request when it is modified
+  const [condition, setCondition] = useState<ICondition | null>(null);
 
   const { data } = useQuery({
-    queryKey: ["yt-playlist"],
+    queryKey: ["yt-get-playlist-details", playlistId],
     queryFn: async () => {
-      if (!condition) return;
-      return await playlistItemsService({
-        playlistId: condition?.playlistId,
-      });
+      return await playlistItemsService({ playlistId });
     },
-    enabled: condition !== null,
+    enabled: isEnabled,
+    staleTime: 1000 * 60 * 10,
     refetchOnWindowFocus: false,
   });
   return {

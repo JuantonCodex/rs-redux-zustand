@@ -27,6 +27,7 @@ interface IPlaylistItem {
 export interface IPlaylistItemsResponse {
   kind: string;
   etag: string;
+  nextPageToken?: string;
   items: IPlaylistItem[];
   pageInfo: IPageInfo;
 }
