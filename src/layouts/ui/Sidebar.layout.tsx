@@ -17,7 +17,7 @@ export function SidebarLayout() {
       <div className="mx-auto flex h-full w-full max-w-[1200px] justify-center">
         <SEOHead title={`Video App`} description={`Video App`} />
         <ResizablePanelGroup direction={direction}>
-          <ResizablePanel className="flex max-h-[120px] items-center gap-6 p-3 md:max-h-full md:max-w-[220px] md:flex-col">
+          <ResizablePanel className="flex max-h-[120px] items-center gap-6 p-3 md:max-h-full md:max-w-[180px] md:flex-col">
             <nav className="flex w-full justify-center">
               <Link to="/">
                 <img
