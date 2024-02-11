@@ -10,7 +10,11 @@ export const useVideoPlayer = (): IReturn => {
   const player = useAppSelector((state) => state.player);
 
   const { currentVideoList, currentVideo } = useMemo(() => {
-    const { collection, currentVideoListIndex, currentVideoIndex } = player;
+    const {
+      collection,
+      currentGroupIndex: currentVideoListIndex,
+      currentElementIndex: currentVideoIndex,
+    } = player;
     const currentVideoList = collection?.videoLists[currentVideoListIndex];
     const currentVideo = currentVideoList?.videos[currentVideoIndex];
 
