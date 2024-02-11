@@ -1,30 +1,19 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
-import { searchService } from "../../services/search.service";
-import { TResourceType } from "../../types/common.types";
+import { searchService } from "../../../services";
+import { TResourceType } from "../../../types/common.type";
 import {
   TSearchResponse,
   ISearchBaseResponse,
-  IVideoItem,
-  IPlaylistItem,
-} from "../../types/search.types";
+} from "../../../types/search.type";
 import { useState } from "react";
+import {
+  TItemsStandardized,
+  standardizedItemsAdapter,
+} from "./useSearch.adapter";
 
 const DEFAULT_QUERY = "judo";
 
-type TSearchReturn = ISearchBaseResponse<
-  | (Omit<IVideoItem, "id"> & {
-      id: {
-        kind: string;
-        id: string;
-      };
-    })
-  | (Omit<IPlaylistItem, "id"> & {
-      id: {
-        kind: string;
-        id: string;
-      };
-    })
->;
+type TSearchReturn = ISearchBaseResponse<TItemsStandardized>;
 
 interface ISearchReturn {
   data: TSearchReturn | undefined;
@@ -52,23 +41,9 @@ export function useSearchQuery(): ISearchReturn {
     refetchOnWindowFocus: false,
   });
 
-  const standardizedItems =
-    query?.data?.items.map((item: IVideoItem | IPlaylistItem) => {
-      let resourceId = "videoId";
-      if ("videoId" in item.id) {
-        resourceId = item.id.videoId;
-      } else if ("playlistId" in item.id) {
-        resourceId = item.id.playlistId;
-      }
-
-      return {
-        ...item,
-        id: {
-          kind: item.id.kind,
-          id: resourceId,
-        },
-      };
-    }) ?? [];
+  const standardizedItems = query?.data?.items
+    ? standardizedItemsAdapter(query.data.items)
+    : [];
 
   const standardizedData = query.data
     ? {
