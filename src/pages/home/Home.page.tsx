@@ -79,7 +79,7 @@ export function HomePage() {
           Buscar playlist
         </Button>
       </div>
-      {/* start */}
+
       <div>
         <VideoPlayer id="player">
           <VideoPlayer.CurrentVideo />
@@ -108,22 +108,6 @@ export function HomePage() {
             ))}
           </VideoPlayer.Collection>
         </VideoPlayer>
-      </div>
-      {/* end */}
-      <div className="grid grid-cols-2 gap-4 pt-4 md:grid-cols-3">
-        {searchData?.items.map(({ id, snippet }) => (
-          <button
-            key={snippet.thumbnails.default.url}
-            className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg"
-            onClick={() => handleViewDetails(id.id)}
-          >
-            <img
-              src={snippet.thumbnails.high.url}
-              alt={snippet.title}
-              className="w-full"
-            />
-          </button>
-        ))}
       </div>
     </div>
   );
