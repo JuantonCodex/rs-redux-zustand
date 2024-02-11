@@ -6,7 +6,7 @@ import { useVideoPlayer } from "../../features/videoPlayer/hooks";
 import { Button } from "../../shared/components/Button";
 import { VideoList } from "../../features/videoPlayer/components/VideoList";
 import { useDispatch } from "react-redux";
-import { next } from "../../features/videoPlayer/store/slices/player";
+import { next } from "../../features/videoPlayer/store/slices/player.slice";
 import ReactPlayer from "react-player";
 import { useParams } from "@tanstack/react-router";
 import { usePlaylistDetailsQuery } from "@/modules/youtube/hooks/queries";
@@ -38,7 +38,7 @@ export function VideoDetailPage() {
   return (
     <div className="flex h-auto max-h-screen items-start justify-center bg-zinc-950 p-4 text-zinc-50">
       <SEOHead title={`${pageTitle}`} description={pageTitle} />
-      <div className="flex w-[1100px] flex-col gap-6">
+      <div className="flex w-[1200px] flex-col gap-6">
         <div className="flex items-center justify-between">
           <Header />
           <Button
