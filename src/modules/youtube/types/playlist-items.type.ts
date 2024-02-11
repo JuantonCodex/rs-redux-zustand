@@ -1,4 +1,4 @@
-import { IPageInfo, IThumbnails } from "./common.types";
+import { IPageInfo, IThumbnails } from "./common.type";
 
 interface ISnippet {
   publishedAt: string;
@@ -17,7 +17,7 @@ interface ISnippet {
   videoOwnerChannelId: string;
 }
 
-interface IPlaylistItem {
+export interface IPlaylistItem {
   kind: string;
   etag: string;
   id: string;

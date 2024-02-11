@@ -1,4 +1,4 @@
-import { IPageInfo, IThumbnails } from "./common.types";
+import { IPageInfo, IThumbnails } from "./common.type";
 
 interface ISnippet {
   publishedAt: string;
@@ -11,7 +11,7 @@ interface ISnippet {
   publishTime: string;
 }
 
-interface IItem {
+export interface IItem {
   kind: string;
   etag: string;
   snippet: ISnippet;
