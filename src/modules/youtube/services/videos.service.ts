@@ -1,5 +1,5 @@
 import { axiosClient } from "@/clients";
-import { IVideosResponse } from "../types/videos.types";
+import { IVideosResponse } from "../types/videos.type";
 
 interface IVideosParamsService {
   part?: string;

@@ -1,5 +1,5 @@
 import { axiosClient } from "@/clients";
-import { IPlaylistItemsResponse } from "../types/playlist-items.types";
+import { IPlaylistItemsResponse } from "../types/playlist-items.type";
 
 interface IPlaylistItemsService {
   part?: string;
