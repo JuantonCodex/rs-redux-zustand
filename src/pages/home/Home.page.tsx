@@ -1,13 +1,24 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useSearchQuery } from "@/modules/youtube/hooks";
 import { Button } from "@/components/ui/button";
-import { TResourceType } from "@/modules/youtube/types/common.types";
+import { TResourceType } from "@/modules/youtube/types/common.type";
 import { CRoutePath } from "@/routes/types/route-path";
-import { useEffect } from "react";
 import VideoPlayer from "@/features/videoPlayer/components/VideoPlayer";
+import { usePlaylistDetailsQuery } from "@/modules/youtube/hooks/queries";
+import { useDispatch } from "react-redux";
+import { addGroup } from "@/features/videoPlayer/store/slices/player.slice";
+import { IPlaylistItem } from "@/modules/youtube/types/playlist-items.type";
+import { useEffect, useRef } from "react";
 
 export function HomePage() {
-  const { data, updateSearchCondition } = useSearchQuery();
+  const dispatch = useDispatch();
+  const currentPlaylistIdRef = useRef<string | null>(null);
+  const { data: searchData, updateSearchCondition } = useSearchQuery();
+  const { data: playlistDetailData, fetchPlaylistDetails } =
+    usePlaylistDetailsQuery({
+      isEnabled: false,
+    });
+
   const navigate = useNavigate();
   const handleClickSearchVideo = ({ type }: { type: TResourceType }) => {
     updateSearchCondition({ type });
@@ -20,15 +31,29 @@ export function HomePage() {
     });
   };
 
-  const handleGetListDetails = () => {
-    console.log("get details");
+  const handleGetListDetails = async (id: string) => {
+    currentPlaylistIdRef.current = id;
+    await fetchPlaylistDetails({ playlistId: id });
   };
 
   useEffect(() => {
-    /* updateSearchCondition({
-      type: "video",
-    }); */
-  }, []);
+    const playlistId = currentPlaylistIdRef.current;
+    if (!playlistDetailData?.items.length || !playlistId) return;
+
+    const elements = playlistDetailData?.items?.map((item: IPlaylistItem) => ({
+      id: item.id,
+      title: item.snippet.title,
+      duration: "11:34",
+    }));
+
+    dispatch(
+      addGroup({
+        id: playlistId,
+        title: playlistId,
+        elements,
+      }),
+    );
+  }, [playlistDetailData, dispatch]);
 
   return (
     <div className="flex w-full flex-col p-4">
@@ -59,24 +84,26 @@ export function HomePage() {
         <VideoPlayer id="player">
           <VideoPlayer.CurrentVideo />
           <VideoPlayer.Collection id="collection">
-            {data?.items.map(({ id, snippet }, index: number) => (
+            {searchData?.items.map(({ id, snippet }, index: number) => (
               <VideoPlayer.List
                 key={id.id}
                 id={id.id}
                 title={snippet.title}
                 videoListIndex={index}
                 videoListsCount={0}
-                onClick={handleGetListDetails}
+                onClick={() => handleGetListDetails(id.id)}
               >
-                <VideoPlayer.Item
-                  key={"#1"}
-                  title={"Titulo"}
-                  duration={"03:90s"}
-                  onClick={() => {
-                    console.log("clicked");
-                  }}
-                  isCurrent={false}
-                />
+                {playlistDetailData?.items.map(({ id, snippet }) => (
+                  <VideoPlayer.Item
+                    key={id}
+                    title={snippet.title}
+                    duration={"03:90s"}
+                    onClick={() => {
+                      console.log("clicked");
+                    }}
+                    isCurrent={false}
+                  />
+                ))}
               </VideoPlayer.List>
             ))}
           </VideoPlayer.Collection>
@@ -84,7 +111,7 @@ export function HomePage() {
       </div>
       {/* end */}
       <div className="grid grid-cols-2 gap-4 pt-4 md:grid-cols-3">
-        {data?.items.map(({ id, snippet }) => (
+        {searchData?.items.map(({ id, snippet }) => (
           <button
             key={snippet.thumbnails.default.url}
             className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg"
