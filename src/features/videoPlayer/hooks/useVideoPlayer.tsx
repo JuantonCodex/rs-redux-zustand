@@ -1,31 +1,31 @@
 import { useMemo } from "react";
 import { useAppSelector } from "../../../store";
-import { IVideo, IVideoList } from "../interfaces";
+import { IElement, IGroup } from "../store/slices/player.type";
 
 interface IReturn {
-  currentVideoList: IVideoList | undefined;
-  currentVideo: IVideo | undefined;
+  currentGroup: IGroup | undefined;
+  currentElement: IElement | undefined;
 }
 export const useVideoPlayer = (): IReturn => {
   const player = useAppSelector((state) => state.player);
 
-  const { currentVideoList, currentVideo } = useMemo(() => {
+  const { currentGroup, currentElement } = useMemo(() => {
     const {
       collection,
       currentGroupIndex: currentVideoListIndex,
       currentElementIndex: currentVideoIndex,
     } = player;
-    const currentVideoList = collection?.videoLists[currentVideoListIndex];
-    const currentVideo = currentVideoList?.videos[currentVideoIndex];
+    const currentGroup = collection?.groups[currentVideoListIndex];
+    const currentElement = currentGroup?.elements[currentVideoIndex];
 
     return {
-      currentVideoList,
-      currentVideo,
+      currentGroup,
+      currentElement,
     };
   }, [player]);
 
   return {
-    currentVideoList,
-    currentVideo,
+    currentGroup,
+    currentElement,
   };
 };

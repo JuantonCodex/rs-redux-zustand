@@ -24,11 +24,11 @@ export function VideoDetailPage() {
   });
 
   console.log("data", data);
-  const { currentVideo } = useVideoPlayer();
-  const pageTitle = currentVideo?.title ?? "";
+  const { currentElement } = useVideoPlayer();
+  const pageTitle = currentElement?.title ?? "";
 
   const videoLists = useAppSelector((state) => {
-    return state.player.collection?.videoLists;
+    return state.player.collection?.groups;
   });
 
   const handleOnNextVideo = () => {
@@ -50,7 +50,7 @@ export function VideoDetailPage() {
         </div>
         <main className="tablet:flex-row tablet:pr-80 relative flex flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow">
           <div className="flex-1">
-            {currentVideo && (
+            {currentElement && (
               <div className="aspect-video w-full bg-zinc-950">
                 <ReactPlayer
                   width="100%"
@@ -58,18 +58,18 @@ export function VideoDetailPage() {
                   controls
                   playing
                   onEnded={handleOnNextVideo}
-                  url={`https://www.youtube.com/watch?v=${currentVideo.id}`}
+                  url={`https://www.youtube.com/watch?v=${currentElement.id}`}
                 />
               </div>
             )}
           </div>
           <aside className="tablet:absolute tablet:w-80 bottom-0 right-0 top-0 divide-y-2 divide-zinc-900 overflow-y-scroll border-l border-zinc-800 bg-zinc-900 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800">
-            {videoLists?.map(({ id, title, videos }, index) => (
+            {videoLists?.map(({ id, title, elements }, index) => (
               <VideoList
                 key={id}
                 videoListIndex={index}
                 title={title}
-                videoListsCount={videos.length}
+                videoListsCount={elements.length}
               />
             ))}
           </aside>

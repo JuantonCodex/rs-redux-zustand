@@ -21,7 +21,7 @@ export function VideoList({
   const { videoItems, currentVideoListIndex, currentVideoIndex } =
     useAppSelector((state) => {
       const videoItems =
-        state.player.collection?.videoLists[videoListIndex].videos;
+        state.player.collection?.groups[videoListIndex].elements;
       const {
         currentGroupIndex: currentVideoListIndex,
         currentElementIndex: currentVideoIndex,
@@ -34,11 +34,11 @@ export function VideoList({
       };
     });
 
-  const handleOnPlay = (videoListIndex: number, videoIndex: number) => {
+  const handleOnPlay = (groupIndex: number, elementIndex: number) => {
     dispatch(
       play({
-        videoListIndex,
-        videoIndex,
+        groupIndex,
+        elementIndex,
       }),
     );
   };
