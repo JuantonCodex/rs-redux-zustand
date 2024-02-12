@@ -1,10 +1,12 @@
 export const COURSE_DATA_MOCKED = {
   collection: {
-    videoLists: [
+    id: "C_wre43",
+    kind: "listResponse",
+    groups: [
       {
         id: "1",
         title: "Iniciando com React",
-        videos: [
+        elements: [
           { id: "Jai8w6K_GnY", title: "CSS Modules", duration: "13:45" },
           {
             id: "w-DW4DhDfcw",
@@ -16,7 +18,7 @@ export const COURSE_DATA_MOCKED = {
       {
         id: "2",
         title: "Estrutura da aplicação",
-        videos: [
+        elements: [
           {
             id: "gE48FQXRZ_o",
             title: "Componente: Comment",
@@ -27,6 +29,6 @@ export const COURSE_DATA_MOCKED = {
       },
     ],
   },
-  currentVideoListIndex: 0,
-  currentVideoIndex: 0,
+  currentGroupIndex: 0,
+  currentElementIndex: 0,
 };
