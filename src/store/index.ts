@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useSelector, TypedUseSelectorHook } from "react-redux";
-import { player } from "../features/videoPlayer/store/slices/player";
+import { player } from "../features/videoPlayer/store/slices/player.slice";
 
 /**
  * Cada reducer es responsable de devolver su propio estado del slice

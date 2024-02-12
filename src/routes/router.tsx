@@ -11,19 +11,19 @@ const rootRoute = new RootRoute({
 // Layouts
 const mainLayoutRoute = new Route({
   getParentRoute: () => rootRoute,
-  id: "mainlayout",
+  id: "main",
   component: HeaderLayout,
 });
 
 const sidebarLayoutRoute = new Route({
   getParentRoute: () => rootRoute,
-  id: "secondarylayout",
+  id: "sidebar",
   component: SidebarLayout,
 });
 
 // Paths
 const homeRoute = new Route({
-  getParentRoute: () => sidebarLayoutRoute,
+  getParentRoute: () => mainLayoutRoute,
   path: "/",
   component: HomePage,
 });
@@ -41,7 +41,7 @@ const videoDetailRoute = new Route({
 });
 
 const routeTree = rootRoute.addChildren([
-  mainLayoutRoute.addChildren([videoDetailRoute]),
-  sidebarLayoutRoute.addChildren([homeRoute, videoPlaylistRoute]),
+  mainLayoutRoute.addChildren([homeRoute, videoDetailRoute]),
+  sidebarLayoutRoute.addChildren([videoPlaylistRoute]),
 ]);
 export const router = new Router({ routeTree, basepath: BASE_PATH });

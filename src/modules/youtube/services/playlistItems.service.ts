@@ -1,5 +1,5 @@
 import { axiosClient } from "@/clients";
-import { IPlaylistItemsResponse } from "../types/playlist-items.types";
+import { IPlaylistItemsResponse } from "../types/playlist-items.type";
 
 interface IPlaylistItemsService {
   part?: string;
@@ -14,7 +14,7 @@ export const playlistItemsService = async ({
     const response = await axiosClient().get("/playlistItems", {
       params: {
         part,
-        id: playlistId,
+        playlistId,
       },
     });
     return response.data;

@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { useAppSelector } from "../../../store";
 import { useDispatch } from "react-redux";
-import { play } from "../store/slices/player";
+import { play } from "../store/slices/player.slice";
 import { VideoItem } from "./VideoItem";
 
 interface IVideoListProps {
@@ -21,8 +21,11 @@ export function VideoList({
   const { videoItems, currentVideoListIndex, currentVideoIndex } =
     useAppSelector((state) => {
       const videoItems =
-        state.player.collection?.videoLists[videoListIndex].videos;
-      const { currentVideoListIndex, currentVideoIndex } = state.player;
+        state.player.collection?.groups[videoListIndex].elements;
+      const {
+        currentGroupIndex: currentVideoListIndex,
+        currentElementIndex: currentVideoIndex,
+      } = state.player;
 
       return {
         videoItems,
@@ -31,11 +34,11 @@ export function VideoList({
       };
     });
 
-  const handleOnPlay = (videoListIndex: number, videoIndex: number) => {
+  const handleOnPlay = (groupIndex: number, elementIndex: number) => {
     dispatch(
       play({
-        videoListIndex,
-        videoIndex,
+        groupIndex,
+        elementIndex,
       }),
     );
   };

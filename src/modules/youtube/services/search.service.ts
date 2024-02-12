@@ -1,6 +1,6 @@
 import { axiosClient } from "../../../clients";
-import { TResourceType } from "../types/common.types";
-import { TSearchResponse } from "../types/search.types";
+import { TResourceType } from "../types/common.type";
+import { TSearchResponse } from "../types/search.type";
 
 interface ISearchParamsService {
   query: string;

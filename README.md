@@ -40,6 +40,12 @@ src/
 ├── theme
 ```
 
+## Definitions
+
+- Collection:
+- Video List:
+- Video:
+
 
 ## Installation
 

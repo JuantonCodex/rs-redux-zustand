@@ -1,4 +1,4 @@
-import { IPageInfo, IThumbnails } from "./common.types";
+import { IPageInfo, IThumbnails } from "./common.type";
 
 interface ISnippet {
   publishedAt: string;

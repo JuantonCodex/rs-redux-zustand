@@ -1,4 +1,4 @@
-import { IPageInfo, IThumbnails } from "./common.types";
+import { IPageInfo, IThumbnails } from "./common.type";
 
 interface ISnippet {
   publishedAt: string;
@@ -17,16 +17,21 @@ interface ISnippet {
   videoOwnerChannelId: string;
 }
 
-interface IPlaylistItem {
+export interface IPlaylistItem {
   kind: string;
   etag: string;
   id: string;
   snippet: ISnippet;
+  contentDetails: {
+    videoId: string;
+    videoPublishedAt: string;
+  };
 }
 
 export interface IPlaylistItemsResponse {
   kind: string;
   etag: string;
+  nextPageToken?: string;
   items: IPlaylistItem[];
   pageInfo: IPageInfo;
 }
