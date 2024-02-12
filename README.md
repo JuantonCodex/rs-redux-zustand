@@ -10,7 +10,8 @@ This project is an application that uses React and Redux to manage a video playe
   </tr>
   <tr>
     <td><img src="./previews/mobile-version.png" width="300" /></td>
-    <td><img src="./previews/desktop-version.png" /></td>
+    <td><img src="https://github.com/JuantonCodex/video-player-redux/assets/1317580/594ccc3c-b0b0-4d7a-8643-c7508f2b4620" /></td>
+
   </tr>
 </table>
 
