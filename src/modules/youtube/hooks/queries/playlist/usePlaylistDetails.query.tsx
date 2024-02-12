@@ -1,11 +1,11 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { playlistItemsService } from "../../../services";
-import { useRef } from "react";
+import { useState } from "react";
 import { IPlaylistItemsResponse } from "../../../types/playlist-items.type";
 
 interface IPlaylistDetailsReturn {
   data: IPlaylistItemsResponse | undefined;
-  fetchPlaylistDetails: (criterion: { playlistId: string }) => void;
+  getPlaylistDetails: (criterion: { playlistId: string }) => void;
 }
 
 type TPlaylistID = string | undefined;
@@ -19,36 +19,30 @@ export function usePlaylistDetailsQuery({
   isEnabled = false,
   playlistId = undefined,
 }: IPlaylistDetailsParams): IPlaylistDetailsReturn {
-  const queryClient = useQueryClient();
-  const criterionRef = useRef<{ playlistId: TPlaylistID }>({ playlistId });
-
-  const enabled = isEnabled || criterionRef.current.playlistId !== undefined;
-
-  const queryFn = async () => {
-    const { playlistId } = criterionRef.current;
-    if (!playlistId) return;
-    return await playlistItemsService({ playlistId });
-  };
+  const [criterion, setCriterion] = useState<{ playlistId: TPlaylistID }>({
+    playlistId,
+  });
+  const enabled = isEnabled || criterion.playlistId !== undefined;
 
   const queryResult = useQuery({
-    queryKey: ["yt-get-playlist-details", criterionRef.current.playlistId],
-    queryFn,
+    queryKey: ["yt-get-playlist-details", criterion.playlistId],
+    queryFn: async () => {
+      const { playlistId } = criterion;
+      console.log("playlistId ->", playlistId);
+      if (!playlistId) return;
+      return await playlistItemsService({ playlistId });
+    },
     enabled,
-    staleTime: 0,
+    staleTime: 1000 * 60 * 10,
     refetchOnWindowFocus: false,
   });
 
-  const fetchPlaylistDetails = async (criterion: { playlistId: string }) => {
-    criterionRef.current = criterion;
-    queryClient.setQueryData(
-      ["yt-get-playlist-details", criterion.playlistId],
-      queryResult.data,
-    );
-    await queryResult.refetch();
+  const getPlaylistDetails = (newCriterion: { playlistId: string }) => {
+    setCriterion(newCriterion);
   };
 
   return {
     ...queryResult,
-    fetchPlaylistDetails,
+    getPlaylistDetails,
   };
 }

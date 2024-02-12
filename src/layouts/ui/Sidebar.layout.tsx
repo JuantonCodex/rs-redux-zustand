@@ -7,13 +7,13 @@ import {
 } from "@/components/ui/resizable";
 import { useMediaQuery } from "@/hooks/mediaQuery/useMediaQuery";
 import { screens } from "@/theme/screens";
-import Logo from "@/assets/logo_transparent.png";
+import Logo from "@/assets/logo.png";
 
 export function SidebarLayout() {
   const isTablet = useMediaQuery(`(min-width: ${screens.md})`);
   const direction = isTablet ? "horizontal" : "vertical";
   return (
-    <div className="h-full w-full justify-center bg-zinc-950 text-zinc-50">
+    <div className="h-full w-full justify-center bg-zinc-950">
       <div className="mx-auto flex h-full w-full max-w-[1200px] justify-center">
         <SEOHead title={`Video App`} description={`Video App`} />
         <ResizablePanelGroup direction={direction}>

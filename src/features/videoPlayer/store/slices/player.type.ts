@@ -1,7 +1,7 @@
 /* Actions */
 export type TActions = {
   addGroup: IGroup;
-  play: { videoListIndex: number; videoIndex: number };
+  play: { groupIndex: number; elementIndex: number };
   next: () => void;
 };
 

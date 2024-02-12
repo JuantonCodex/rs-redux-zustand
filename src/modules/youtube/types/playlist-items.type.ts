@@ -22,6 +22,10 @@ export interface IPlaylistItem {
   etag: string;
   id: string;
   snippet: ISnippet;
+  contentDetails: {
+    videoId: string;
+    videoPublishedAt: string;
+  };
 }
 
 export interface IPlaylistItemsResponse {

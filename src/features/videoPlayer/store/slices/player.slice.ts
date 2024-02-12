@@ -29,8 +29,8 @@ const playerSlice = createSlice({
       };
     },
     play: (state, action: PayloadAction<TActions["play"]>) => {
-      state.currentGroupIndex = action.payload.videoListIndex;
-      state.currentElementIndex = action.payload.videoIndex;
+      state.currentGroupIndex = action.payload.groupIndex;
+      state.currentElementIndex = action.payload.elementIndex;
     },
     next: (state) => {
       const nextVideoIndex = state.currentElementIndex + 1;

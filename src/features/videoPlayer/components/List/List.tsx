@@ -19,7 +19,11 @@ export function List({
   onClick,
 }: Readonly<IListProps>) {
   return (
-    <Collapsible.Root className="group" defaultOpen={false} data-testid={id}>
+    <Collapsible.Root
+      className="group text-zinc-50"
+      defaultOpen={false}
+      data-testid={id}
+    >
       <Collapsible.Trigger asChild onClick={onClick}>
         <button className="flex w-full gap-3 bg-zinc-800 p-4">
           <div className="flex h-10 w-10 min-w-10 items-center justify-center rounded-full bg-zinc-950 text-sm">
